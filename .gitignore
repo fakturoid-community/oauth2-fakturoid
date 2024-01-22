@@ -1,0 +1,5 @@
+compose.yaml
+composer.lock
+.phpunit.cache
+vendor
+Dockerfile

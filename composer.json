@@ -1,0 +1,62 @@
+{
+  "name": "fakturoid-community/oauth2-fakturoid",
+  "description": "Fakturoid OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tomáš Kulhánek",
+      "email": "jsem@tomaskulhanek.cz",
+      "homepage": "https://github.com/tomas-kulhanek"
+    }
+  ],
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "client",
+    "authorization",
+    "authorisation",
+    "fakturoid"
+  ],
+  "require": {
+    "php": ">=8.1",
+    "league/oauth2-client": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fakturoid\\Oauth2\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fakturoid\\Tests\\Oauth2\\": "tests/"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@phpstan",
+      "@phpcs",
+      "@phpunit"
+    ],
+    "test:phpunit": "php -d xdebug.mode=off vendor/phpunit/phpunit/phpunit",
+    "check:phpstan": "php -d memory_limit=512M vendor/bin/phpstan analyse -c phpstan.neon",
+    "check:rector": "php vendor/bin/rector process src tests public --dry-run",
+    "check:cs": "phpcs --extensions=php --standard=PSR12 -n src tests",
+    "fix:cs": "phpcbf --extensions=php --standard=PSR12 -n src tests",
+    "fix:rector": "php vendor/bin/rector process src tests public",
+    "fix:all": [
+      "@fix:rector",
+      "@fix:cs"
+    ],
+    "check:all": [
+      "@check:phpstan",
+      "@check:rector",
+      "@check:cs"
+    ]
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^10.5",
+    "rector/rector": "^0.19.2",
+    "squizlabs/php_codesniffer": "^3.7"
+  }
+}
